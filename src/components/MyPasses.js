@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import EventDetails from "./EventDetails";
-import myPassData from "../data/myPassData";
+import { eventData } from "../data/eventData";
 
 const ReturnHome = ({ navigateTo }) => (
   <div className="home">
@@ -8,11 +8,9 @@ const ReturnHome = ({ navigateTo }) => (
   </div>
 );
 
-const MyPasses = ({ navigateTo }) => {
-  const [passes, setPasses] = useState(myPassData);
-
+const MyPasses = ({ passes, updatePasses, navigateTo }) => {
   const handleCancel = (pass) => {
-    setPasses(
+    updatePasses(
       passes.map((p) => {
         if (p.id === pass.id) {
           return { ...p, status: "cancelled" };
@@ -31,15 +29,30 @@ const MyPasses = ({ navigateTo }) => {
       <div className="my-passes">
         <h2>My Registered Passes</h2>
         {registeredPasses.length === 0 && <p>No registered passes.</p>}
-        {registeredPasses.map((pass) => (
-          <EventDetails key={pass.id} event={pass.event} paymentInfo={pass.paymentInfo} onCancel={handleCancel} />
-        ))}
+        {registeredPasses.map((pass) => {
+          return (
+            <div key={pass.id}>
+              <p>Pass ID: {pass.id}</p>
+              <p>Event ID: {pass.eventId}</p>
+              <p>Number of Adults: {pass.numAdults}</p>
+              <p>Number of Children: {pass.numChildren}</p>
+              <p>Status: {pass.status}</p>
+              <button onClick={() => handleCancel(pass)}>Cancel Pass</button>
+            </div>
+          );
+        })}
 
         <h2>My Cancelled Passes</h2>
         {cancelledPasses.length === 0 && <p>No cancelled passes.</p>}
-        {cancelledPasses.map((pass) => (
-          <EventDetails key={pass.id} event={pass.event} paymentInfo={pass.paymentInfo} />
-        ))}
+        {cancelledPasses.map((pass) => {
+          return (
+            <div key={pass.id}>
+              <p>Pass ID: {pass.id}</p>
+              <p>Event ID: {pass.eventId}</p>
+              <p>Status: {pass.status}</p>
+            </div>
+          );
+        })}
       </div>
     </>
   );

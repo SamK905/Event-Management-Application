@@ -1,32 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { eventData } from "../data/eventData";
-
-const EventPassNavigation = ({ event, navigateTo }) => (
-  <div className='pass-nav'>
-    {event ? (
-      <>
-        <h3>{event.title}</h3>
-        <p>{event.description}</p>
-        <button onClick={() => navigateTo("/my-passes")}>My Passes</button>
-      </>
-    ) : (
-      <h3>Loading event information...</h3>
-    )}
-  </div>
-);
-
-
-const EventRegistrationNavigation = ({ event, navigateTo }) => (
-  <div className='reg-nav'>
-    <h3>{event.title}</h3>
-    <button onClick={() => navigateTo("register", event.id)}>Register</button>
-  </div>
-);
-
+import { EventRegistrationNavigation } from "./EventRegistrationNavigation";
+import myPassData from "../data/myPassData";
+import EventPassNavigation from "./EventPassNavigation";
 
 const Home = ({ user, setPasses, navigateTo }) => {
+  const [selectedEventId, setSelectedEventId] = useState(null);
   console.log("User:", user);
   console.log("Events:", eventData);
+
+  const isUserRegistered = (eventId) => {
+    return myPassData.some((pass) => pass.eventId === eventId && pass.status === "active");
+  };
 
   return (
     <>
@@ -34,13 +19,24 @@ const Home = ({ user, setPasses, navigateTo }) => {
         <h1>Event Management Portal</h1>
         <div className='event-loop'>
           {eventData.map((event) => (
-            <EventRegistrationNavigation key={event.id} event={event} navigateTo={navigateTo} />
+            <EventRegistrationNavigation
+              key={event.id}
+              event={event}
+              user={user}
+              navigateTo={navigateTo}
+              isRegistered={isUserRegistered(event.id)}
+            />
           ))}
         </div>
-        <button onClick={() => navigateTo("my-passes")}>My Passes</button>
+        {eventData.length > 0 && (
+          <EventPassNavigation
+            event={eventData[0]}
+            navigateTo={navigateTo}
+            setSelectedEventId={setSelectedEventId}
+          />
+        )}
       </div>
     </>
-    
   );
 };
 

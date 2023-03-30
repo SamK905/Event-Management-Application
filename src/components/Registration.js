@@ -1,18 +1,26 @@
 import React, { useState } from "react";
 import { eventData } from "../data/eventData";
+import savePass from "./savePass";
 
-const Registration = ({ user, setPasses, selectedEventId }) => {
+const Registration = ({ user, setPasses, selectedEventId, navigateTo }) => {
   console.log("Selected eventId:", selectedEventId);
   const event = eventData.find((event) => event.id === selectedEventId);
   const [paymentType, setPaymentType] = useState("");
   const [numAdults, setNumAdults] = useState(0);
   const [numChildren, setNumChildren] = useState(0);
+  const [isRegistered, setIsRegistered] = useState(false);
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setPasses((prevPasses) => [...prevPasses, { event, paymentType, numAdults, numChildren }]);
-    alert("Registration successful!");
-  };
+    const selectedEvent = eventData.find((event) => event.id === selectedEventId);
+    const newPass = savePass(selectedEvent, paymentType, numAdults, numChildren); // call savePass and get the new pass data
+    setPasses((prevPasses) => [
+      ...prevPasses,
+      newPass, // add the new pass data to the passes state
+    ]);
+    setIsRegistered(true); // set the isRegistered state to true
+  }; 
 
   if (!user) {
     return <h2>Please login to register for an event.</h2>;
@@ -20,6 +28,16 @@ const Registration = ({ user, setPasses, selectedEventId }) => {
 
   if (!event) {
     return <h2>Event not found.</h2>;
+  }
+
+  if (isRegistered) {
+    return (
+      <div style={{ backgroundColor: "green", color: "white", padding: "10px" }}>
+      <p>Registration successful!</p>
+      <button onClick={() => navigateTo("home")}>Go back to Home</button>
+      <button onClick={() => navigateTo("my-passes", selectedEventId)}>Go to My Passes</button>
+    </div>
+    );
   }
 
   return (

@@ -1,16 +1,23 @@
-import React from 'react';
+import React from "react";
 
-const EventDetails = ({ pass, onCancel }) => {
+const EventDetails = ({ event, paymentInfo, onCancel }) => {
+  if (!event) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div className="event-details">
-      <h3>{pass.event.name}</h3>
-      <p>Date: {pass.event.date}</p>
-      <p>Location: {pass.event.location}</p>
-      <p>Registered on: {pass.registrationDate}</p>
-      {pass.status === 'active' && (
-        <button onClick={() => onCancel(pass)}>Cancel Pass</button>
-      )}
-      {pass.status === 'cancelled' && <p>Pass cancelled</p>}
+      <h3>{event.title}</h3>
+      <p>{event.description}</p>
+      <p>
+        Payment Info: {paymentInfo}
+        {onCancel && (
+          <>
+            {" "}
+            - <button onClick={() => onCancel(event)}>Cancel Pass</button>
+          </>
+        )}
+      </p>
     </div>
   );
 };
