@@ -1,17 +1,31 @@
 import React, { useState } from "react";
+import loginData from "../data/loginData"; // Import loginData
 
 function Login({ setUser, navigateTo }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState(""); // Add this line for displaying error messages
 
   const handleLogin = (role) => {
-    setUser({ username, role });
-    navigateTo("home");
+    const user = loginData.find(
+      (user) =>
+        user.username === username &&
+        user.password === password &&
+        user.role === role
+    );
+
+    if (user) {
+      setUser({ username, role });
+      navigateTo("home");
+    } else {
+      setErrorMessage("Invalid username or password.");
+    }
   };
 
   return (
     <div className="login">
       <h2>Login</h2>
+      {errorMessage && <p className="error">{errorMessage}</p>} {/* Display error messages */}
       <input
         type="text"
         placeholder="Username"
@@ -42,4 +56,4 @@ function Login({ setUser, navigateTo }) {
   );
 }
 
-export default Login
+export default Login;
