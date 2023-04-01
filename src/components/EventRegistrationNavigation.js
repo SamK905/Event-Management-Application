@@ -13,6 +13,7 @@ export const EventRegistrationNavigation = ({ event, user, navigateTo, isRegiste
     <div className="event-registration-navigation">
       <h3>{event.title}</h3>
       <p>{event.description}</p>
+      <p>{event.location}</p>
       {isRegistered ? (
         <button onClick={handleMyPasses}>My Pass</button>
       ) : (
