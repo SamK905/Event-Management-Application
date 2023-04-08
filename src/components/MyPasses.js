@@ -13,7 +13,7 @@ const MyPasses = ({ passes, updatePasses, navigateTo }) => {
     updatePasses(
       passes.map((p) => {
         if (p.id === pass.id) {
-          return { ...p, status: "cancelled" };
+          console.log({ ...p, status: "cancelled" });
         }
         return p;
       })

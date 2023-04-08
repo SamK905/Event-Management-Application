@@ -4,6 +4,7 @@ import Login from "./components/Login";
 import Registration from "./components/Registration";
 import MyPasses from "./components/MyPasses";
 import myPassData from "./data/myPassData";
+import './App.css';
 
 function App() {
   const [user, setUser] = useState(null);
