@@ -2,7 +2,11 @@ import React from "react";
 
 export const EventRegistrationNavigation = ({ event, user, navigateTo, isRegistered }) => {
   const handleRegistration = () => {
-    navigateTo("register", event.id);
+    if (user.role === "guest") {
+      navigateTo("login");
+    } else {
+      navigateTo("register", event.id);
+    }
   };
 
   const handleMyPasses = () => {
@@ -17,7 +21,11 @@ export const EventRegistrationNavigation = ({ event, user, navigateTo, isRegiste
       {isRegistered ? (
         <button onClick={handleMyPasses}>My Pass</button>
       ) : (
-        <button onClick={handleRegistration}>Register</button>
+        user.role === "guest" ? (
+          <button onClick={handleRegistration}>Login to Register</button>
+        ) : (
+          <button onClick={handleRegistration}>Register</button>
+        )
       )}
     </div>
   );

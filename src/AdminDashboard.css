@@ -1,0 +1,25 @@
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+  }
+  
+  .awesome-button {
+    background-color: #4caf50;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    padding: 10px 24px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition-duration: 0.4s;
+  }
+  
+  .awesome-button:hover {
+    background-color: #45a049;
+    color: white;
+  }
+  

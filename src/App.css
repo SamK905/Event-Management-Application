@@ -36,7 +36,6 @@ button {
   border-radius: 4px;
   text-align: center;
   transition: background-color 0.2s;
-  margin-top: 8px;
 }
 
 button:hover {
@@ -92,4 +91,15 @@ button:hover {
   .event-loop {
     grid-template-columns: repeat(4, 1fr);
   }
+}
+
+.flash-cards-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.flash-card {
+  flex: 1;
+  margin-right: 10px;
+  margin-left: 10px;
 }

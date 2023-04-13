@@ -1,35 +1,52 @@
 import React, { useState } from "react";
-import EventDetails from "./EventDetails";
+import EventDetails from "../EventDetails";
 import { eventData } from "../data/eventData";
 
 const ReturnHome = ({ navigateTo }) => (
   <div className="home">
-    <button onClick={() => navigateTo("home")}>Home</button>
+    <button onClick={() => navigateTo("user-home")}>Home</button>
   </div>
 );
+const MyPasses = ({
+  passes,
+  updatePasses,
+  navigateTo,
+  eventId,
+  selectedStatus,
+}) => {
+  console.log('passes:', passes);
+  console.log('selectedStatus:', selectedStatus);
+  
+  let filteredPasses = passes;
+  if(selectedStatus === "active") {
+    filteredPasses = passes.filter((pass) => pass.status === "active");
+  } else if(selectedStatus === "cancelled") {
+    filteredPasses = passes.filter((pass) => pass.status === "cancelled");
+  }
 
-const MyPasses = ({ passes, updatePasses, navigateTo }) => {
   const handleCancel = (pass) => {
+    console.log('passes before update:', passes);
+  
     updatePasses(
       passes.map((p) => {
         if (p.id === pass.id) {
-          console.log({ ...p, status: "cancelled" });
+          console.log('cancelling pass:', pass);
+          return { ...p, status: "cancelled" };
         }
         return p;
       })
     );
+  
+    console.log('passes after update:', passes);
   };
-
-  const registeredPasses = passes.filter((pass) => pass.status === "active");
-  const cancelledPasses = passes.filter((pass) => pass.status === "cancelled");
 
   return (
     <>
       <ReturnHome navigateTo={navigateTo} />
       <div className="my-passes">
-        <h2>My Registered Passes</h2>
-        {registeredPasses.length === 0 && <p>No registered passes.</p>}
-        {registeredPasses.map((pass) => {
+        <h2>{selectedStatus === "active" ? "Registered Passes" : "Cancelled Passes"}</h2>
+        {filteredPasses.length === 0 && <p>No {selectedStatus === "active" ? "registered" : "cancelled"} passes.</p>}
+        {filteredPasses.map((pass) => {
           return (
             <div key={pass.id}>
               <p>Pass ID: {pass.id}</p>
@@ -38,18 +55,6 @@ const MyPasses = ({ passes, updatePasses, navigateTo }) => {
               <p>Number of Children: {pass.numChildren}</p>
               <p>Status: {pass.status}</p>
               <button onClick={() => handleCancel(pass)}>Cancel Pass</button>
-            </div>
-          );
-        })}
-
-        <h2>My Cancelled Passes</h2>
-        {cancelledPasses.length === 0 && <p>No cancelled passes.</p>}
-        {cancelledPasses.map((pass) => {
-          return (
-            <div key={pass.id}>
-              <p>Pass ID: {pass.id}</p>
-              <p>Event ID: {pass.eventId}</p>
-              <p>Status: {pass.status}</p>
             </div>
           );
         })}
