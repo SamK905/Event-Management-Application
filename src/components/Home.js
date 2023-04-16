@@ -3,6 +3,10 @@ import { eventData } from "../data/eventData";
 import { EventRegistrationNavigation } from "./EventRegistrationNavigation";
 import myPassData from "../data/myPassData";
 import EventPassNavigation from "./EventPassNavigation";
+import AdminDashboard from "./AdminDashboard";
+import RegisteredUserDashboard from "./RegisteredUserDashboard";
+import GuestDashboard from "./GuestDashboard";
+
 
 const Home = ({ user, setPasses, navigateTo }) => {
   const [selectedEventId, setSelectedEventId] = useState(null);
@@ -12,7 +16,25 @@ const Home = ({ user, setPasses, navigateTo }) => {
   const isUserRegistered = (eventId) => {
     return myPassData.some((pass) => pass.eventId === eventId && pass.status === "active");
   };
-
+  const renderDashboard = () => {
+    switch (user.role) {
+      case "admin":
+        return <AdminDashboard />;
+      case "user":
+        return (
+          <RegisteredUserDashboard
+            user={user}
+            eventData={eventData}
+            myPassData={myPassData}
+            navigateTo={navigateTo}
+          />
+        );
+      case "guest":
+        return <GuestDashboard />;
+      default:
+        return null;
+    }
+  };
   return (
     <>
       <div className='pass-navigation'>

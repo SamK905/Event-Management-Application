@@ -4,6 +4,7 @@ const savePass = (event, paymentType, numAdults, numChildren) => {
   const newPass = {
     id: myPassData.length + 1,
     event,
+    eventTitle: event.title,
     paymentType,
     numAdults,
     numChildren,
@@ -11,7 +12,7 @@ const savePass = (event, paymentType, numAdults, numChildren) => {
   };
 
   myPassData.push(newPass);
-  return newPass; // return the new pass data
+  return newPass;
 };
 
 export default savePass;
