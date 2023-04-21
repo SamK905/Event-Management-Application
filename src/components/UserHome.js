@@ -119,13 +119,13 @@ const UserHome = ({ user, setPasses, navigateTo }) => {
       >
        <a
           className="menu-item"
-          onClick={() => navigateTo("my-passes", "active")}
+          onClick={() => navigateTo("active-passes","", "active")}
         >
           Registered Passes
         </a>
         <a
           className="menu-item"
-          onClick={() => navigateTo("my-passes", "cancelled")}
+          onClick={() => navigateTo("cancelled-passes","", "cancelled")}
         >
           Cancelled Passes
         </a>

@@ -56,7 +56,8 @@ function App() {
       {page === "login" && <Login setUser={setUser} navigateTo={navigateTo} />}
       {page === "home" && <Home user={user} setPasses={setPasses} navigateTo={navigateTo} />}
       {page === "register" && <Registration user={user} setPasses={setPasses} selectedEventId={selectedEventId} navigateTo={navigateTo} />}
-      {page === "my-passes" && <MyPasses passes={myPassData} updatePasses={setPasses} navigateTo={navigateTo} eventId={selectedEventId} selectedStatus={selectedStatus}/>}
+      {page === "active-passes" && <MyPasses passes={myPassData} updatePasses={setPasses} navigateTo={navigateTo} eventId={selectedEventId} selectedStatus={"active"}/>}
+      {page === "cancelled-passes" && <MyPasses passes={myPassData} updatePasses={setPasses} navigateTo={navigateTo} eventId={selectedEventId} selectedStatus={"cancelled"}/>}
       {user && user.role === "admin" && <AdminHome user={user} setPasses={setPasses} navigateTo={redirectTo} />}
       {page === "guest-home" && <GuestHome user={user} navigateTo={navigateTo} />}
       {page === "user-home" && <UserHome user={user} navigateTo={navigateTo} />}
