@@ -2,13 +2,18 @@ import React, { useState } from "react";
 import Home from "./components/Home";
 import Login from "./components/Login";
 import Registration from "./components/Registration";
-import MyPasses from "./components/MyPasses";
 import AdminHome from "./components/AdminHome";
 import myPassData from "./data/myPassData";
 import UserHome from "./components/UserHome";
 import GuestHome from "./components/GuestHome";
 import './App.css';
 import GuestDashboard from "./components/GuestDashboard";
+import Ticket from "./components/Ticket";
+
+
+import ReactDOM from "react-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
 
 function App() {
   const [user, setUser] = useState(null);
@@ -56,8 +61,9 @@ function App() {
       {page === "login" && <Login setUser={setUser} navigateTo={navigateTo} />}
       {page === "home" && <Home user={user} setPasses={setPasses} navigateTo={navigateTo} />}
       {page === "register" && <Registration user={user} setPasses={setPasses} selectedEventId={selectedEventId} navigateTo={navigateTo} />}
-      {page === "active-passes" && <MyPasses passes={myPassData} updatePasses={setPasses} navigateTo={navigateTo} eventId={selectedEventId} selectedStatus={"active"}/>}
-      {page === "cancelled-passes" && <MyPasses passes={myPassData} updatePasses={setPasses} navigateTo={navigateTo} eventId={selectedEventId} selectedStatus={"cancelled"}/>}
+      {page === "active-passes" && <Ticket passes={myPassData} updatePasses={setPasses} navigateTo={navigateTo} eventId={selectedEventId} selectedStatus={"active"}/>}
+      {page === "cancelled-passes" && <Ticket passes={myPassData} updatePasses={setPasses} navigateTo={navigateTo} eventId={selectedEventId} selectedStatus={"cancelled"}/>}
+      {page === "past-passes" && <Ticket passes={myPassData} updatePasses={setPasses} navigateTo={navigateTo} eventId={selectedEventId} selectedStatus={"complete"}/>}
       {user && user.role === "admin" && <AdminHome user={user} setPasses={setPasses} navigateTo={redirectTo} />}
       {page === "guest-home" && <GuestHome user={user} navigateTo={navigateTo} />}
       {page === "user-home" && <UserHome user={user} navigateTo={navigateTo} />}

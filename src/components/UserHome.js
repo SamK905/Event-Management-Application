@@ -44,7 +44,7 @@ const UserHome = ({ user, setPasses, navigateTo }) => {
 
   const renderFilterDropdown = () => {
     return (
-      <div>
+      <div style={{ paddingLeft: '534px',paddingTop: '6px'}}>
         <label htmlFor="filter">Filter events:</label>
         <select id="filter" value={filter} onChange={handleFilterChange}>
           <option value="">--Select filter--</option>
@@ -60,17 +60,33 @@ const UserHome = ({ user, setPasses, navigateTo }) => {
 
   const renderEventFlashCards = () => {
     return (
-      <div className="flash-cards-container">
-        {filteredEvents().map((event) => (
-          <div key={event.id} className="flash-card">
-            <div className="flash-card-content">
-              <h3>{event.name}</h3>
-              <p>{event.location}</p>
-              <p>{event.date}</p>
-            </div>
-          </div>
-        ))}
+      <div class="wrapper" id="flex-container">
+    {filteredEvents().map((item) => {
+    return(
+      <div>
+    <div class="product-img" id="flex-auto">
+      <img src={item.url} height="300" width="270"/>
+    </div>
+    <div class="product-info" id="flex-initial">
+      <div class="product-text">
+        <h1>{item.name}</h1>
+        <p>{item.description}</p>
       </div>
+
+      <div style={{marginTop:'-155px',marginLeft:'37px'}}>
+        <p>Event date: {item.date}</p>
+        <p>Location: {item.location}</p>
+        <p>Time:{item.time}</p>
+      </div>
+
+      <div class="product-price-btn">
+        <p><span>{item.registrationFee}</span>$</p>
+        <button type="button">Register Now</button>
+      </div>
+    </div>
+    </div>
+    )})}
+  </div>
     );
   };
   
@@ -119,16 +135,24 @@ const UserHome = ({ user, setPasses, navigateTo }) => {
       >
        <a
           className="menu-item"
-          onClick={() => navigateTo("active-passes","", "active")}
+          onClick={() => navigateTo("active-passes", "","active")}
         >
           Registered Passes
         </a>
         <a
           className="menu-item"
-          onClick={() => navigateTo("cancelled-passes","", "cancelled")}
+          onClick={() => navigateTo("cancelled-passes", "", "cancelled")}
         >
           Cancelled Passes
         </a>
+
+        <a
+          className="menu-item"
+          onClick={() => navigateTo("past-passes", "", "complete")}
+        >
+          Past Passes
+        </a>
+
         <a className="menu-item" onClick={handleLogout}>
           Logout
         </a>
@@ -154,14 +178,22 @@ const UserHome = ({ user, setPasses, navigateTo }) => {
 
   return (
     <>
-      {renderMenuButton()}
-      {<HamburgerMenu />}
+    <ul style={{background:'#0F1111'}}>
+    <li style={{float:'left' }}><a><strong>Events</strong></a></li>
+    <li style={{float:'right'}}><button onClick={() => navigateTo("login")}>Logout</button></li>
+    {/* <li style={{float:'right'}}><a href="ticket">My Tickets</a></li> */}
+    <li style={{float:'right'}}><button onClick={() => navigateTo("active-passes")}>My Passes</button></li>
+    <li style={{float:'right'}}><button button onClick={() => navigateTo("user-home")}>Events Home</button></li>
+    </ul>
+    
+
+      {/* {renderMenuButton()}
+      {<HamburgerMenu />} */}
       <div style={{ paddingLeft: menuOpen ? "250px" : "0" }}>
         {renderFilterDropdown()}
         
         {renderEventFlashCards()}   
-      </div>
-       
+      </div>    
     </>
   );
 };

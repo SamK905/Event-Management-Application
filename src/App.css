@@ -27,7 +27,7 @@ h1, h2, p {
 }
 
 button {
-  background-color: #007bff;
+  background-color: cadetblue;
   border: none;
   color: #fff;
   cursor: pointer;
@@ -39,7 +39,7 @@ button {
 }
 
 button:hover {
-  background-color: #0056b3;
+  background-color: darkblue;
 }
 
 .my-passes {
