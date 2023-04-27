@@ -33,7 +33,7 @@ const Registration = ({ user, setPasses, selectedEventId, navigateTo }) => {
     return (
       <div style={{ backgroundColor: "green", color: "white", padding: "10px" }}>
       <p>Registration successful!</p>
-      <button onClick={() => navigateTo("home")}>Go back to Home</button>
+      <button onClick={() => navigateTo("user-home")}>Go back to Home</button>
       <button onClick={() => navigateTo("active-passes", selectedEventId)}>Go to My Passes</button>
     </div>
     );

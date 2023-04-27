@@ -27,7 +27,7 @@ h1, h2, p {
 }
 
 button {
-  background-color: cadetblue;
+  background-color: rgb(70, 79, 149);
   border: none;
   color: #fff;
   cursor: pointer;

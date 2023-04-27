@@ -18,7 +18,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
   const [user, setUser] = useState(null);
-  const [passes, setPasses] = useState([]);
+  const [passes, setPasses] = useState(myPassData);
   const [page, setPage] = useState("login");
   const [selectedEventId, setSelectedEventId] = useState(null);
   const [selectedUser, setSelectedUser] = useState(null);
@@ -79,9 +79,9 @@ function App() {
           navigateTo={navigateTo}
         />
       )}
-      {page === "active-passes" && <Ticket passes={myPassData} updatePasses={setPasses} navigateTo={navigateTo} eventId={selectedEventId} selectedStatus={"active"}/>}
-      {page === "cancelled-passes" && <Ticket passes={myPassData} updatePasses={setPasses} navigateTo={navigateTo} eventId={selectedEventId} selectedStatus={"cancelled"}/>}
-      {page === "past-passes" && <Ticket passes={myPassData} updatePasses={setPasses} navigateTo={navigateTo} eventId={selectedEventId} selectedStatus={"complete"}/>}
+      {page === "active-passes" && <Ticket passes={passes} updatePasses={setPasses} navigateTo={navigateTo} eventId={selectedEventId} selectedStatus={"active"}/>}
+      {page === "cancelled-passes" && <Ticket passes={passes} updatePasses={setPasses} navigateTo={navigateTo} eventId={selectedEventId} selectedStatus={"cancelled"}/>}
+      {page === "past-passes" && <Ticket passes={passes} updatePasses={setPasses} navigateTo={navigateTo} eventId={selectedEventId} selectedStatus={"complete"}/>}
       {user && user.role === "admin" && <AdminHome user={user} setPasses={setPasses} navigateTo={redirectTo} />}
       {page === "guest-home" && <GuestHome user={user} navigateTo={navigateTo} />}
       {page === "user-home" && <UserHome user={user} navigateTo={navigateTo} />}
