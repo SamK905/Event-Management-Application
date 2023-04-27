@@ -44,7 +44,7 @@ const MyPasses = ({
     <>
       <ReturnHome navigateTo={navigateTo} />
       <div className="my-passes">
-        <h2>{selectedStatus === "active" ? "Registered Passes" : "Cancelled Passes"}</h2>
+        {/* <h2>{selectedStatus === "active" ? "Registered Passes" : "Cancelled Passes"}</h2> */}
         {filteredPasses.length === 0 && <p>No {selectedStatus === "active" ? "registered" : "cancelled"} passes.</p>}
         {filteredPasses.map((pass) => {
           return (

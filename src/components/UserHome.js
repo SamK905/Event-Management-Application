@@ -10,6 +10,11 @@ const UserHome = ({ user, setPasses, navigateTo }) => {
   const [filter, setFilter] = useState("");
   const [menuOpen, setMenuOpen] = useState(false);
 
+  const handleRegisterClick = (eventId) => {
+    setSelectedEventId(eventId);
+    navigateTo("registration",eventId);
+  };  
+  
   const handleFilterChange = (e) => {
     setFilter(e.target.value);
   };
@@ -81,7 +86,9 @@ const UserHome = ({ user, setPasses, navigateTo }) => {
 
       <div class="product-price-btn">
         <p><span>{item.registrationFee}</span>$</p>
-        <button type="button">Register Now</button>
+        <button type="button" onClick={() => handleRegisterClick(item.id)}>
+          Register Now
+        </button>
       </div>
     </div>
     </div>
@@ -180,13 +187,11 @@ const UserHome = ({ user, setPasses, navigateTo }) => {
     <>
     <ul style={{background:'#0F1111'}}>
     <li style={{float:'left' }}><a><strong>Events</strong></a></li>
-    <li style={{float:'right'}}><button onClick={() => navigateTo("login")}>Logout</button></li>
+    <li style={{float:'right'}}><a onClick={() => navigateTo("login")}>Logout</a></li>
     {/* <li style={{float:'right'}}><a href="ticket">My Tickets</a></li> */}
-    <li style={{float:'right'}}><button onClick={() => navigateTo("active-passes")}>My Passes</button></li>
-    <li style={{float:'right'}}><button button onClick={() => navigateTo("user-home")}>Events Home</button></li>
+    <li style={{float:'right'}}><a onClick={() => navigateTo("active-passes")}>My Passes</a></li>
+    {/* <li style={{float:'right'}}><button button onClick={() => navigateTo("user-home")}>Events Home</button></li> */}
     </ul>
-    
-
       {/* {renderMenuButton()}
       {<HamburgerMenu />} */}
       <div style={{ paddingLeft: menuOpen ? "250px" : "0" }}>

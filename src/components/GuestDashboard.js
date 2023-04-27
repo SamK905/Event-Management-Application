@@ -34,13 +34,12 @@ const GuestDashboard = ({ navigateTo }) => {
 
     autoTable(doc, {
       startY: 30,
-      head: [["Pass ID", "Event", "Name", "Email", "Status"]],
+      head: [["Pass ID", "Event", "Name", "Description", "Status"]],
       body: [
         [
           eventPass.id,
-          event.name,
-          eventPass.name,
-          eventPass.email,
+          eventPass.eventTitle,
+          eventPass.eventDescription,
           eventPass.status,
         ],
       ],

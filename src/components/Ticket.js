@@ -1,7 +1,4 @@
 import React,{useState,useEffect} from 'react';
-import ReactToPrint from 'react-to-print';
-import EventDetails from "../EventDetails";
-import { eventData } from "../data/eventData";
 import './Ticket.css';
 const thStyle = {
     fontFamily: "Anton",

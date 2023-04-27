@@ -8,8 +8,7 @@ const Registration = ({ user, setPasses, selectedEventId, navigateTo }) => {
   const [paymentType, setPaymentType] = useState("");
   const [numAdults, setNumAdults] = useState(0);
   const [numChildren, setNumChildren] = useState(0);
-  const [isRegistered, setIsRegistered] = useState(false);
-
+  const [isRegistered, setIsRegistered] = useState(false); 
 
   const handleSubmit = (e) => {
     e.preventDefault();

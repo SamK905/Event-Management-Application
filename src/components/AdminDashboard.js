@@ -8,6 +8,7 @@ import "../AdminDashboard.css";
 
 const AdminDashboard = () => {
   const [selectedOption, setSelectedOption] = useState(null);
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const [events, setEvents] = useState(eventData);
   const [newEvent, setNewEvent] = useState({
     id: "",
@@ -44,17 +45,18 @@ const AdminDashboard = () => {
       registrationFee: "",
       title: "",
     });
-  };
+    setShowSuccessMessage(true);
+    setTimeout(() => setShowSuccessMessage(false), 3000); // Hide the success message after 3 seconds
+  }; 
 
   const renderCreateEvent = () => {
     return (
       <div>
         <h3>Create Event</h3>
+        {showSuccessMessage && <h3 style={{ color: "green" }}>Event created successfully!</h3>}
         <form onSubmit={handleSubmit}>
           <input
             type="text"
-            name="name"
-            placeholder="Event Name"
             value={newEvent.name}
             onChange={handleChange}
           />
@@ -156,7 +158,6 @@ const AdminDashboard = () => {
             <div className="flash-cards-container">
                 {filteredEvents().map((event) => (
                 <div key={event.id} className="flash-card">
-                    <img src={event.image} alt={event.name} />
                     <div className="flash-card-content">
                     <h3>{event.name}</h3>
                     <p>{event.location}</p>
