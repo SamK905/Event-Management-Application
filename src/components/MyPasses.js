@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import EventDetails from "../EventDetails";
+import PassDetails from "../data/myPassData";
 import { eventData } from "../data/eventData";
 
 const ReturnHome = ({ navigateTo }) => (
@@ -44,10 +44,12 @@ const MyPasses = ({
     <>
       <ReturnHome navigateTo={navigateTo} />
       <div className="my-passes">
-        {/* <h2>{selectedStatus === "active" ? "Registered Passes" : "Cancelled Passes"}</h2> */}
+        <h2>{selectedStatus === "active" ? "Registered Passes" : "Cancelled Passes"}</h2>
         {filteredPasses.length === 0 && <p>No {selectedStatus === "active" ? "registered" : "cancelled"} passes.</p>}
         {filteredPasses.map((pass) => {
           return (
+            <>
+            <span>Event Title: {PassDetails.eventTitle}</span >
             <div key={pass.id}>
               <p>Pass ID: {pass.id}</p>
               <p>Event ID: {pass.eventId}</p>
@@ -56,6 +58,7 @@ const MyPasses = ({
               <p>Status: {pass.status}</p>
               <button onClick={() => handleCancel(pass)}>Cancel Pass</button>
             </div>
+            </>
           );
         })}
       </div>

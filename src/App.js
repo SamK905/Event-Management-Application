@@ -79,13 +79,13 @@ function App() {
           navigateTo={navigateTo}
         />
       )}
-      {page === "active-passes" && <MyPasses passes={myPassData} updatePasses={setPasses} navigateTo={navigateTo} eventId={selectedEventId} selectedStatus={"active"}/>}
-      {page === "cancelled-passes" && <MyPasses passes={myPassData} updatePasses={setPasses} navigateTo={navigateTo} eventId={selectedEventId} selectedStatus={"cancelled"}/>}
-      {page === "past-passes" && <MyPasses passes={myPassData} updatePasses={setPasses} navigateTo={navigateTo} eventId={selectedEventId} selectedStatus={"complete"}/>}
+      {page === "active-passes" && <Ticket passes={myPassData} updatePasses={setPasses} navigateTo={navigateTo} eventId={selectedEventId} selectedStatus={"active"}/>}
+      {page === "cancelled-passes" && <Ticket passes={myPassData} updatePasses={setPasses} navigateTo={navigateTo} eventId={selectedEventId} selectedStatus={"cancelled"}/>}
+      {page === "past-passes" && <Ticket passes={myPassData} updatePasses={setPasses} navigateTo={navigateTo} eventId={selectedEventId} selectedStatus={"complete"}/>}
       {user && user.role === "admin" && <AdminHome user={user} setPasses={setPasses} navigateTo={redirectTo} />}
       {page === "guest-home" && <GuestHome user={user} navigateTo={navigateTo} />}
       {page === "user-home" && <UserHome user={user} navigateTo={navigateTo} />}
-      {page === "my-passes" && <MyPasses passes={passes} updatePasses={setPasses} navigateTo={navigateTo} eventId={selectedEventId} selectedStatus={selectedStatus} />}
+      {page === "my-passes" && <Ticket passes={myPassData} updatePasses={setPasses} navigateTo={navigateTo} eventId={selectedEventId} selectedStatus={selectedStatus} />}
     </div>
   );
 }
