@@ -4,6 +4,7 @@ import myPassData from "../data/myPassData";
 import "../UserHome.css";
 import Logout from './Logout';
 import { slide as Menu } from 'react-burger-menu';
+import "../Navbar.css";
 
 const UserHome = ({ user, setPasses, navigateTo }) => {
   const [selectedEventId, setSelectedEventId] = useState(null);
@@ -187,13 +188,19 @@ const UserHome = ({ user, setPasses, navigateTo }) => {
     <>
     <ul style={{background:'#0F1111'}}>
     <li style={{float:'left' }}><a><strong>Events</strong></a></li>
-    <li style={{float:'right'}}><a onClick={() => navigateTo("login")}>Logout</a></li>
-    {/* <li style={{float:'right'}}><a href="ticket">My Tickets</a></li> */}
-    <li style={{float:'right'}}><a onClick={() => navigateTo("active-passes")}>My Passes</a></li>
-    {/* <li style={{float:'right'}}><button button onClick={() => navigateTo("user-home")}>Events Home</button></li> */}
+    <ul className="navbar">
+      <li className="nav-item">
+        <a className="nav-link" onClick={() => navigateTo("login")}>
+          Logout
+        </a>
+      </li>
+      <li className="nav-item">
+        <a className="nav-link" onClick={() => navigateTo("active-passes")}>
+          My Passes
+        </a>
+      </li>
     </ul>
-      {/* {renderMenuButton()}
-      {<HamburgerMenu />} */}
+    </ul>
       <div style={{ paddingLeft: menuOpen ? "250px" : "0" }}>
         {renderFilterDropdown()}
         

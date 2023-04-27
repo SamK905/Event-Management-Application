@@ -1,0 +1,35 @@
+.navbar {
+    display: flex;
+    justify-content: flex-end;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    background-color: #333;
+    overflow: hidden;
+  }
+  
+  .nav-item {
+    float: right;
+  }
+  
+  .nav-link {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .nav-link:hover {
+    background-color: #595757;
+    color: #fff;
+  }
+  
+  .nav-link:active {
+    background-color: #a2a0af;
+    color: white;
+  }
+  
