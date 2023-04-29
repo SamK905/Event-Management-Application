@@ -88,7 +88,7 @@ const UserHome = ({ user, setPasses, navigateTo }) => {
       <div class="product-price-btn">
         <p><span>{item.registrationFee}</span>$</p>
         <button type="button" onClick={() => handleRegisterClick(item.id)}>
-          Register Now
+          <strong>Register Now</strong>
         </button>
       </div>
     </div>
@@ -97,108 +97,22 @@ const UserHome = ({ user, setPasses, navigateTo }) => {
   </div>
     );
   };
-  
-  const HamburgerMenu = () => {
-    return (
-      <Menu
-        left
-        isOpen={menuOpen}
-        onStateChange={({ isOpen }) => setMenuOpen(isOpen)}
-        width={"250px"}
-        customBurgerIcon={<img src={`${process.env.PUBLIC_URL}/hamburger-icon.png`} alt="Menu" style={{ width: '20px', height: '20px' }} />}
-        customCrossIcon={false}
-        styles={{
-          bmBurgerButton: {
-            display: 'none'
-          },
-          bmMenu: {
-            background: '#333',
-            padding: '2.5em 1.5em 0',
-            fontSize: '1.15em'
-          },
-          bmMorphShape: {
-            fill: '#373a47'
-          },
-          bmItemList: {
-            color: '#b8b7ad',
-            padding: '0.8em'
-          },
-          bmOverlay: {
-            background: 'rgba(0, 0, 0, 0.3)'
-          },
-          bmItem: {
-            display: 'block',
-            padding: '0.5rem 1rem',
-            color: '#fff',
-            fontSize: '1.2rem',
-            transition: 'background-color 0.3s ease',
-          },
-          bmItemHover: {
-            backgroundColor: 'rgba(255, 255, 255, 0.2)',
-          },
-          bmItemActive: {
-            backgroundColor: 'rgba(255, 255, 255, 0.4)',
-          },
-        }}
-      >
-       <a
-          className="menu-item"
-          onClick={() => navigateTo("active-passes", "","active")}
-        >
-          Registered Passes
-        </a>
-        <a
-          className="menu-item"
-          onClick={() => navigateTo("cancelled-passes", "", "cancelled")}
-        >
-          Cancelled Passes
-        </a>
-
-        <a
-          className="menu-item"
-          onClick={() => navigateTo("past-passes", "", "complete")}
-        >
-          Past Passes
-        </a>
-
-        <a className="menu-item" onClick={handleLogout}>
-          Logout
-        </a>
-      </Menu>
-
-    );
-  };
-  
-
-  const handleMenuButtonClick = () => {
-    setMenuOpen(!menuOpen);
-  };
-
-  const renderMenuButton = () => (
-    <button onClick={handleMenuButtonClick} className="hamburger-menu-button">
-      <img
-        src={`${process.env.PUBLIC_URL}/hamburger-icon.png`}
-        alt="Menu"
-        style={{ width: '20px', height: '20px' }}
-      />
-    </button>
-  );
 
   return (
     <>
     <ul style={{background:'#0F1111'}}>
-    <li style={{float:'left' }}><a><strong>Events</strong></a></li>
-    <ul className="navbar">
-      <li className="nav-item">
-        <a className="nav-link" onClick={() => navigateTo("login")}>
-          Logout
-        </a>
-      </li>
-      <li className="nav-item">
+    <li style={{float:'left' }}><a><strong>Event Managment Portal</strong></a></li>
+    <ul className="navbar" style={{background:"black"}}>
+       <li className="nav-item">
         <a className="nav-link" onClick={() => navigateTo("active-passes")}>
           My Passes
         </a>
       </li>
+      <li className="nav-item">
+        <a className="nav-link" onClick={() => navigateTo("login")}>
+          Logout
+        </a>
+      </li>      
     </ul>
     </ul>
       <div style={{ paddingLeft: menuOpen ? "250px" : "0" }}>

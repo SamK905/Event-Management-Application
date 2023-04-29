@@ -5,7 +5,7 @@ export const eventData = [
       description: 'DJ, music, games and entetainment over night',
       location: 'New York, NY',
       time: '10:00 AM',
-      date: '2023-04-01',
+      date: '2023-04-30',
       registrationFee: 100,
       url:'https://www.eventcombo.com/Images/ECImages/3414eb64-1a48-415a-915d-4823abc68fca.jpg'
     },

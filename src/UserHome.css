@@ -163,19 +163,20 @@ body {
   box-sizing: border-box;
   border: transparent;
   border-radius: 60px;
-  font-family: 'Raleway', sans-serif;
+  font-family: sans-serif;
   font-size: 14px;
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.2em;
-  color: #ffffff;
-  background-color: #9cebd5;
+  color: #f9fafb;
+  background-color: #9388fd;
   cursor: pointer;
   outline: none;
 }
 
 .product-price-btn button:hover {
-  background-color: #79b0a1;
+  background-color: #feb703;
+  color: #fff;
 }
 
 #flex-container {

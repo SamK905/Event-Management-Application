@@ -60,7 +60,6 @@ function Login({ setUser, navigateTo }) {
             onChange={(e) => setUserPassword(e.target.value)}/>        
       </div>
       <a href="" style={{textDecoration:'underline'}} className="link">Forgot Your Password?</a>
-      {/* <a href="" className="link" onClick={() => handleGuestLogin()}>Browse as guest</a> */}
 
     </div>
     <div className="action">
@@ -68,6 +67,7 @@ function Login({ setUser, navigateTo }) {
     <button onClick={() => handleLogin("user")}>Login</button>
     </div>
   </form>
+
 </div>
   );
 }

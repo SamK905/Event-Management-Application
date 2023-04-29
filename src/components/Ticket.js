@@ -1,5 +1,9 @@
 import React,{useState,useEffect} from 'react';
+import { eventData } from "../data/eventData";
+import { jsPDF } from "jspdf";
+import autoTable from "jspdf-autotable";
 import './Ticket.css';
+
 const thStyle = {
     fontFamily: "Anton",
     fontWeight: "normal",
@@ -31,13 +35,7 @@ const ReturnHome = ({ navigateTo }) => (
     </span>
   );
 
-  const Ticket = ({
-    passes,
-    updatePasses,
-    navigateTo,
-    eventId,
-    selectedStatus,
-  }) => {
+  const Ticket = ({passes, updatePasses, navigateTo, eventId, selectedStatus }) => {
     console.log('passes:', passes);
     console.log('selectedStatus:', selectedStatus);
     
@@ -66,10 +64,55 @@ const ReturnHome = ({ navigateTo }) => (
     
       console.log('passes after update:', passes);
     };
+
+    const downloadPDF = (pass) => {
+      const event = eventData.find((event) => event.id === pass.eventId);
+      const doc = new jsPDF();
+    
+      doc.setFontSize(18);
+      doc.text("Event Pass", 14, 20);
+    
+      autoTable(doc, {
+        startY: 30,
+        head: [["Pass ID", "Date", "Name", "Description", "Status"]],
+        body: [
+          [
+            pass.id,
+            event.date,
+            pass.eventTitle,
+            pass.eventDescription,
+            pass.status,
+          ],
+        ],
+      });
+    
+      doc.save("event-pass.pdf");
+    }; 
+
+    const buttonContainerStyle = {
+      display: "flex",
+      justifyContent: "space-between",
+      flexWrap: "wrap",
+      width: "250px",
+      marginLeft: "55%",
+      marginBottom: "5px",
+    };    
   
     return (
       <>
-        <ReturnHome style={{}} navigateTo={navigateTo} />
+        <div>
+          <ul className="navbar">          
+            <li className="nav-item">
+              <span className="nav-link" onClick={() => navigateTo("user-home")}>Home
+                </span> 
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" onClick={() => navigateTo("login")}>
+                Logout
+              </a>
+            </li>
+          </ul>
+          </div>
         <div style={{display:'flex', justifyContent:'space-around ', marginTop:'20px'}}>
         <ActivePass navigateTo={navigateTo} />
         <CancelledPass navigateTo={navigateTo} />
@@ -94,12 +137,19 @@ const ReturnHome = ({ navigateTo }) => (
                     <div>Number of Adults:{pass.numAdults}</div>
                     <div>Number of Children:{pass.numChildren}</div>
                     Status:  <span style={{backgroundColor:pass.status==="active"?"#5af84c": pass.status=='cancelled'?'red':"#ffd311", color:'white'}}>{pass.status}</span>
-                    
-                    {/* {pass.status === "active"?"": <a style={{backgroundColor:'#5af84c'}}>Cancelled</a>} */}
                   </section>
-                  {pass.status === "active"?
-                    <button style={{backgroundColor:'red',marginLeft:'503px', marginBottom:'5px'}} ype='submit' onClick={() => handleCancel(pass)}>Cancel Pass</button>
-                    :""}
+                    <div style={buttonContainerStyle}>
+                      <button style={{ backgroundColor: "#FDC104" }} onClick={() => downloadPDF(pass)}>
+                        Download Pass
+                      </button>
+                      {pass.status === "active" ? (
+                        <button style={{ backgroundColor: "red" }} onClick={() => handleCancel(pass)}>
+                          Cancel Pass
+                        </button>
+                      ) : (
+                        ""
+                      )}
+                    </div>
                 </article>
                 </div>
             );
