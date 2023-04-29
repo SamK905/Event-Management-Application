@@ -41,50 +41,34 @@ function Login({ setUser, navigateTo }) {
   }
 
   return (
-    <div className="login">
-      <h2>Login</h2>
-      {errorMessage && <p className="error">{errorMessage}</p>}
-      <div className="flash-cards-container">
-        <div className="flash-card user-card">
-          <h3>User Login</h3>
-          <input
+    <div class="login-form">
+  <form>
+    <h1>Event management Portal</h1>
+    <div class="content">
+      <div class="input-field">
+      <input
             type="text"
             placeholder="Username"
             value={userUsername}
-            onChange={(e) => setUserUsername(e.target.value)}
-          />
-          <input
+            onChange={(e) => setUserUsername(e.target.value)}/>
+      </div>
+      <div class="input-field">
+      <input
             type="password"
             placeholder="Password"
             value={userPassword}
-            onChange={(e) => setUserPassword(e.target.value)}
-          />
-          <button onClick={() => handleLogin("user")}>Login</button>
-          <p>Register for events and manage passes</p>
-        </div>
-        <div className="flash-card admin-card">
-          <h3>Admin Login</h3>
-          <input
-            type="text"
-            placeholder="Username"
-            value={adminUsername}
-            onChange={(e) => setAdminUsername(e.target.value)}
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            value={adminPassword}
-            onChange={(e) => setAdminPassword(e.target.value)}
-          />
-          <button onClick={() => handleLogin("admin")}>Login</button>
-          <p>Manage events and users</p>
-        </div>
-        <button className="flash-card guest-card" onClick={() => handleGuestLogin()}>
-          <h3>Guest View</h3>
-          <p>Access limited event details</p>
-        </button>
+            onChange={(e) => setUserPassword(e.target.value)}/>        
       </div>
+      <a href="" style={{textDecoration:'underline'}} className="link">Forgot Your Password?</a>
+      {/* <a href="" className="link" onClick={() => handleGuestLogin()}>Browse as guest</a> */}
+
     </div>
+    <div className="action">
+    <button onClick={() =>{}}>Signup</button>
+    <button onClick={() => handleLogin("user")}>Login</button>
+    </div>
+  </form>
+</div>
   );
 }
 
